@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Reproducing tables and results from Külpmann and Kuzmics (2022)</title>
+
+<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Reproducing tables and results from Külpmann and Kuzmics (2022)</h1>
+
+
+
+<p>This vignette shows how to reproduce every table, graph and test from <span class="citation">Külpmann and Kuzmics (2020)</span>.</p>
+<div id="set-up" class="section level1">
+<h1>Set up</h1>
+<p>The data as well as predictions for each theory mentioned in <span class="citation">Külpmann and Kuzmics (2020)</span> are included as additional data to the package “oottest.” Thus, you only need to install the package. Furthermore, we use the package xtables (<span class="citation">Dahl et al. (2009)</span>) to convert the R tables to latex tables which we use in the paper.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;oottest&quot;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;xtable&quot;</span>)</span></code></pre></div>
+<div id="accessing-the-data-and-predictions" class="section level2">
+<h2>Accessing the data and predictions</h2>
+<p>Data and predictions can be accessed directly after installing the oottest package. Access them as:</p>
+<ul>
+<li>data_two_action_games</li>
+<li>data_three_action_games</li>
+<li>predictions_two_action_games</li>
+<li>predictions_three_action_games</li>
+</ul>
+<p>Please see the documentation for each dataset to learn about formatting, usage and the source. To access the documentation for e.g., the data from the two action games, type:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>?data_two_action_games</span></code></pre></div>
+</div>
+</div>
+<div id="tables-and-figures-from-the-main-paper" class="section level1">
+<h1>Tables and figures from the main paper</h1>
+<div id="vuong-matrix-table-1-and-2" class="section level2">
+<h2>Vuong matrix (table 1 and 2)</h2>
+<p>Table 1 and 2 consist of 6 Vuong matrices, one for each of the different types of games:</p>
+<ul>
+<li>Two-action games
+<ul>
+<li>Hawk-dove games</li>
+<li>Matching pennies: asymmetric own-payoffs</li>
+<li>Matching pennies: symmetric own-payoffs</li>
+</ul></li>
+<li>Three-action games
+<ul>
+<li>Hawk-middle-dove games</li>
+<li>Rock-Scissors-Paper: asymmetric own-payoffs</li>
+<li>Rock-Scissors-Paper: symmetric own-payoffs</li>
+</ul></li>
+</ul>
+<p>The following commands creates a Vuong matrix for each of them and saves them as vuong_table_GAME_NAME. (The ranges below are to select the treatments.)</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>vuong_table_hdg <span class="ot">&lt;-</span> <span class="fu">vuong_matrix</span>(data_two_action_games[,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>], predictions_two_action_games[,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,])</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>vuong_table_mp1 <span class="ot">&lt;-</span> <span class="fu">vuong_matrix</span>(data_two_action_games[,<span class="dv">11</span><span class="sc">:</span><span class="dv">15</span>], predictions_two_action_games[,<span class="dv">11</span><span class="sc">:</span><span class="dv">15</span>,])</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>vuong_table_mp2 <span class="ot">&lt;-</span> <span class="fu">vuong_matrix</span>(data_two_action_games[,<span class="dv">16</span><span class="sc">:</span><span class="dv">20</span>], predictions_two_action_games[,<span class="dv">16</span><span class="sc">:</span><span class="dv">20</span>,])</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>vuong_table_ac <span class="ot">&lt;-</span> <span class="fu">vuong_matrix</span>(data_three_action_games[,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>], predictions_three_action_games[,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,])</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>vuong_table_rsp1 <span class="ot">&lt;-</span> <span class="fu">vuong_matrix</span>(data_three_action_games[,<span class="dv">11</span><span class="sc">:</span><span class="dv">15</span>], predictions_three_action_games[,<span class="dv">11</span><span class="sc">:</span><span class="dv">15</span>,])</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>vuong_table_rsp2 <span class="ot">&lt;-</span> <span class="fu">vuong_matrix</span>(data_three_action_games[,<span class="dv">16</span><span class="sc">:</span><span class="dv">20</span>], predictions_three_action_games[,<span class="dv">16</span><span class="sc">:</span><span class="dv">20</span>,])</span></code></pre></div>
+<p>Now, we have six Vuong matrix, each looking similar to this:</p>
+<table>
+<caption>Hawk-Dove Games</caption>
+<colgroup>
+<col width="7%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="5%" />
+<col width="6%" />
+<col width="6%" />
+<col width="7%" />
+<col width="6%" />
+<col width="7%" />
+<col width="6%" />
+<col width="7%" />
+<col width="6%" />
+<col width="7%" />
+<col width="6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">CH</th>
+<th align="right">CH-RA</th>
+<th align="right">LK</th>
+<th align="right">NE</th>
+<th align="right">NE-RA</th>
+<th align="right">NI</th>
+<th align="right">NI-RA</th>
+<th align="right">QCH</th>
+<th align="right">QCH-RA</th>
+<th align="right">QLK</th>
+<th align="right">QLK-RA</th>
+<th align="right">QRE</th>
+<th align="right">QRE-RA</th>
+<th align="right">RND</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">CH</td>
+<td align="right">NaN</td>
+<td align="right">-1.77</td>
+<td align="right">3.05</td>
+<td align="right">7.98</td>
+<td align="right">-1.21</td>
+<td align="right">-0.10</td>
+<td align="right">1.40</td>
+<td align="right">0.82</td>
+<td align="right">-1.91</td>
+<td align="right">1.04</td>
+<td align="right">2.72</td>
+<td align="right">-0.92</td>
+<td align="right">0.25</td>
+<td align="right">3.77</td>
+</tr>
+<tr class="even">
+<td align="left">CH-RA</td>
+<td align="right">1.77</td>
+<td align="right">NaN</td>
+<td align="right">5.61</td>
+<td align="right">6.36</td>
+<td align="right">0.47</td>
+<td align="right">2.40</td>
+<td align="right">5.07</td>
+<td align="right">3.36</td>
+<td align="right">-1.34</td>
+<td align="right">2.12</td>
+<td align="right">5.56</td>
+<td align="right">1.63</td>
+<td align="right">3.99</td>
+<td align="right">7.11</td>
+</tr>
+<tr class="odd">
+<td align="left">LK</td>
+<td align="right">-3.05</td>
+<td align="right">-5.61</td>
+<td align="right">NaN</td>
+<td align="right">4.31</td>
+<td align="right">-3.71</td>
+<td align="right">-6.13</td>
+<td align="right">-5.03</td>
+<td align="right">-6.89</td>
+<td align="right">-5.63</td>
+<td align="right">-1.76</td>
+<td align="right">1.40</td>
+<td align="right">-4.35</td>
+<td align="right">-6.80</td>
+<td align="right">6.49</td>
+</tr>
+<tr class="even">
+<td align="left">NE</td>
+<td align="right">-7.98</td>
+<td align="right">-6.36</td>
+<td align="right">-4.31</td>
+<td align="right">NaN</td>
+<td align="right">-5.86</td>
+<td align="right">-6.47</td>
+<td align="right">-4.67</td>
+<td align="right">-5.76</td>
+<td align="right">-6.27</td>
+<td align="right">-9.30</td>
+<td align="right">-2.72</td>
+<td align="right">-7.73</td>
+<td align="right">-5.19</td>
+<td align="right">-3.49</td>
+</tr>
+<tr class="odd">
+<td align="left">NE-RA</td>
+<td align="right">1.21</td>
+<td align="right">-0.47</td>
+<td align="right">3.71</td>
+<td align="right">5.86</td>
+<td align="right">NaN</td>
+<td align="right">1.43</td>
+<td align="right">3.17</td>
+<td align="right">2.05</td>
+<td align="right">-1.54</td>
+<td align="right">1.57</td>
+<td align="right">5.76</td>
+<td align="right">1.00</td>
+<td align="right">2.26</td>
+<td align="right">4.98</td>
+</tr>
+<tr class="even">
+<td align="left">NI</td>
+<td align="right">0.10</td>
+<td align="right">-2.40</td>
+<td align="right">6.13</td>
+<td align="right">6.47</td>
+<td align="right">-1.43</td>
+<td align="right">NaN</td>
+<td align="right">2.81</td>
+<td align="right">4.32</td>
+<td align="right">-2.55</td>
+<td align="right">0.97</td>
+<td align="right">2.84</td>
+<td align="right">-1.27</td>
+<td align="right">0.59</td>
+<td align="right">6.81</td>
+</tr>
+<tr class="odd">
+<td align="left">NI-RA</td>
+<td align="right">-1.40</td>
+<td align="right">-5.07</td>
+<td align="right">5.03</td>
+<td align="right">4.67</td>
+<td align="right">-3.17</td>
+<td align="right">-2.81</td>
+<td align="right">NaN</td>
+<td align="right">-2.11</td>
+<td align="right">-5.41</td>
+<td align="right">-0.62</td>
+<td align="right">2.17</td>
+<td align="right">-2.30</td>
+<td align="right">-8.93</td>
+<td align="right">12.38</td>
+</tr>
+<tr class="even">
+<td align="left">QCH</td>
+<td align="right">-0.82</td>
+<td align="right">-3.36</td>
+<td align="right">6.89</td>
+<td align="right">5.76</td>
+<td align="right">-2.05</td>
+<td align="right">-4.32</td>
+<td align="right">2.11</td>
+<td align="right">NaN</td>
+<td align="right">-3.46</td>
+<td align="right">0.07</td>
+<td align="right">2.50</td>
+<td align="right">-2.34</td>
+<td align="right">-0.81</td>
+<td align="right">7.62</td>
+</tr>
+<tr class="odd">
+<td align="left">QCH-RA</td>
+<td align="right">1.91</td>
+<td align="right">1.34</td>
+<td align="right">5.63</td>
+<td align="right">6.27</td>
+<td align="right">1.54</td>
+<td align="right">2.55</td>
+<td align="right">5.41</td>
+<td align="right">3.46</td>
+<td align="right">NaN</td>
+<td align="right">2.21</td>
+<td align="right">5.69</td>
+<td align="right">1.80</td>
+<td align="right">4.54</td>
+<td align="right">7.23</td>
+</tr>
+<tr class="even">
+<td align="left">QLK</td>
+<td align="right">-1.04</td>
+<td align="right">-2.12</td>
+<td align="right">1.76</td>
+<td align="right">9.30</td>
+<td align="right">-1.57</td>
+<td align="right">-0.97</td>
+<td align="right">0.62</td>
+<td align="right">-0.07</td>
+<td align="right">-2.21</td>
+<td align="right">NaN</td>
+<td align="right">2.37</td>
+<td align="right">-2.42</td>
+<td align="right">-0.33</td>
+<td align="right">2.57</td>
+</tr>
+<tr class="odd">
+<td align="left">QLK-RA</td>
+<td align="right">-2.72</td>
+<td align="right">-5.56</td>
+<td align="right">-1.40</td>
+<td align="right">2.72</td>
+<td align="right">-5.76</td>
+<td align="right">-2.84</td>
+<td align="right">-2.17</td>
+<td align="right">-2.50</td>
+<td align="right">-5.69</td>
+<td align="right">-2.37</td>
+<td align="right">NaN</td>
+<td align="right">-3.01</td>
+<td align="right">-2.92</td>
+<td align="right">-0.74</td>
+</tr>
+<tr class="even">
+<td align="left">QRE</td>
+<td align="right">0.92</td>
+<td align="right">-1.63</td>
+<td align="right">4.35</td>
+<td align="right">7.73</td>
+<td align="right">-1.00</td>
+<td align="right">1.27</td>
+<td align="right">2.30</td>
+<td align="right">2.34</td>
+<td align="right">-1.80</td>
+<td align="right">2.42</td>
+<td align="right">3.01</td>
+<td align="right">NaN</td>
+<td align="right">0.86</td>
+<td align="right">5.05</td>
+</tr>
+<tr class="odd">
+<td align="left">QRE-RA</td>
+<td align="right">-0.25</td>
+<td align="right">-3.99</td>
+<td align="right">6.80</td>
+<td align="right">5.19</td>
+<td align="right">-2.26</td>
+<td align="right">-0.59</td>
+<td align="right">8.93</td>
+<td align="right">0.81</td>
+<td align="right">-4.54</td>
+<td align="right">0.33</td>
+<td align="right">2.92</td>
+<td align="right">-0.86</td>
+<td align="right">NaN</td>
+<td align="right">11.20</td>
+</tr>
+<tr class="even">
+<td align="left">RND</td>
+<td align="right">-3.77</td>
+<td align="right">-7.11</td>
+<td align="right">-6.49</td>
+<td align="right">3.49</td>
+<td align="right">-4.98</td>
+<td align="right">-6.81</td>
+<td align="right">-12.38</td>
+<td align="right">-7.62</td>
+<td align="right">-7.23</td>
+<td align="right">-2.57</td>
+<td align="right">0.74</td>
+<td align="right">-5.05</td>
+<td align="right">-11.20</td>
+<td align="right">NaN</td>
+</tr>
+</tbody>
+</table>
+<p>In the paper, we colored the matrices to allow for an easier overview. To create the latex used in the paper, one only has to run the function “color_vuong_table” on each table. It outputs latex code which can directly me used as a table in the document.</p>
+</div>
+<div id="vuong-matrix-all-games-table-3" class="section level2">
+<h2>Vuong matrix: all games (table 3)</h2>
+<p>To create the Vuong matrix using the two and three-action games together, we can not use the vuong_matrix command directly, the structure of two- and three-action games are different.</p>
+<p>This is done here. The (hide) output is latex code of a colored Vuong matrix as above.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>num_theories <span class="ot">&lt;-</span> <span class="fu">dim</span>(predictions_two_action_games)[<span class="dv">3</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">matrix</span>(, <span class="at">nrow =</span> num_theories, <span class="at">ncol =</span> num_theories)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_theories) {</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num_theories) {</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    llr_2 <span class="ot">&lt;-</span> oottest<span class="sc">:::</span><span class="fu">get_llr</span>(data_two_action_games, predictions_two_action_games[,,i], predictions_two_action_games[,,j])</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    llr_3 <span class="ot">&lt;-</span> oottest<span class="sc">:::</span><span class="fu">get_llr</span>(data_three_action_games, predictions_three_action_games[,,i], predictions_three_action_games[,,j])</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    variance_2 <span class="ot">&lt;-</span> oottest<span class="sc">:::</span><span class="fu">get_variance_of_llr</span>(data_two_action_games, predictions_two_action_games[,,i], predictions_two_action_games[,,j])</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    variance_3 <span class="ot">&lt;-</span> oottest<span class="sc">:::</span><span class="fu">get_variance_of_llr</span>(data_three_action_games, predictions_three_action_games[,,i], predictions_three_action_games[,,j])</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    result[i, j] <span class="ot">&lt;-</span> (llr_2 <span class="sc">+</span> llr_3) <span class="sc">/</span> (variance_2 <span class="sc">+</span> variance_3)<span class="sc">^</span>(.<span class="dv">5</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(result) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(predictions_two_action_games[<span class="dv">1</span>,,])</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(result) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(predictions_two_action_games[<span class="dv">1</span>,,])</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>oottest<span class="sc">:::</span><span class="fu">color_vuong_table</span>(result)</span></code></pre></div>
+<div id="calculating-likelihoods" class="section level3">
+<h3>Calculating likelihoods</h3>
+<p>The third and final graph in the paper is a comparison of log-likelihood differences for four different theories.</p>
+<p>The graph itself is created in latex using Tikz (<span class="citation">Tantau (2013)</span>) which uses the data from R as inputs.</p>
+<p>The data was created as follows:</p>
+<p>Creating likelihood tables.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>llh_table_2 <span class="ot">&lt;-</span> oottest<span class="sc">:::</span><span class="fu">create_likelihood_table</span>(data_two_action_games, predictions_two_action_games)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>llh_table_3 <span class="ot">&lt;-</span> oottest<span class="sc">:::</span><span class="fu">create_likelihood_table</span>(data_three_action_games, predictions_three_action_games)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>llh_table_all <span class="ot">&lt;-</span> <span class="fu">cbind</span>(llh_table_2,llh_table_3)</span></code></pre></div>
+<p>Output:</p>
+<table style="width:100%;">
+<caption>Loglikelihoods: two action games</caption>
+<colgroup>
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">T01</th>
+<th align="right">T02</th>
+<th align="right">T03</th>
+<th align="right">T04</th>
+<th align="right">T05</th>
+<th align="right">T06</th>
+<th align="right">T07</th>
+<th align="right">T08</th>
+<th align="right">T09</th>
+<th align="right">T10</th>
+<th align="right">T11</th>
+<th align="right">T12</th>
+<th align="right">T13</th>
+<th align="right">T14</th>
+<th align="right">T15</th>
+<th align="right">T16</th>
+<th align="right">T17</th>
+<th align="right">T18</th>
+<th align="right">T19</th>
+<th align="right">T20</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">CH</td>
+<td align="right">-101.89</td>
+<td align="right">-97.48</td>
+<td align="right">-91.01</td>
+<td align="right">-91.01</td>
+<td align="right">-77.43</td>
+<td align="right">-101.89</td>
+<td align="right">-102.01</td>
+<td align="right">-94.90</td>
+<td align="right">-103.95</td>
+<td align="right">-118.19</td>
+<td align="right">-101.89</td>
+<td align="right">-93.60</td>
+<td align="right">-84.55</td>
+<td align="right">-84.55</td>
+<td align="right">-77.43</td>
+<td align="right">-101.89</td>
+<td align="right">-98.71</td>
+<td align="right">-99.40</td>
+<td align="right">-97.46</td>
+<td align="right">-97.60</td>
+</tr>
+<tr class="even">
+<td align="left">CH-RA</td>
+<td align="right">-101.89</td>
+<td align="right">-97.65</td>
+<td align="right">-93.40</td>
+<td align="right">-91.01</td>
+<td align="right">-77.43</td>
+<td align="right">-94.25</td>
+<td align="right">-109.43</td>
+<td align="right">-96.24</td>
+<td align="right">-101.17</td>
+<td align="right">-99.41</td>
+<td align="right">-101.89</td>
+<td align="right">-93.60</td>
+<td align="right">-84.55</td>
+<td align="right">-84.55</td>
+<td align="right">-77.43</td>
+<td align="right">-101.89</td>
+<td align="right">-98.71</td>
+<td align="right">-99.40</td>
+<td align="right">-97.46</td>
+<td align="right">-97.60</td>
+</tr>
+<tr class="odd">
+<td align="left">LK</td>
+<td align="right">-101.89</td>
+<td align="right">-99.94</td>
+<td align="right">-98.73</td>
+<td align="right">-98.73</td>
+<td align="right">-96.21</td>
+<td align="right">-104.98</td>
+<td align="right">-100.78</td>
+<td align="right">-99.45</td>
+<td align="right">-101.14</td>
+<td align="right">-103.78</td>
+<td align="right">-101.89</td>
+<td align="right">-99.21</td>
+<td align="right">-97.53</td>
+<td align="right">-97.53</td>
+<td align="right">-96.21</td>
+<td align="right">-101.89</td>
+<td align="right">-99.09</td>
+<td align="right">-99.69</td>
+<td align="right">-98.01</td>
+<td align="right">-98.13</td>
+</tr>
+<tr class="even">
+<td align="left">NE</td>
+<td align="right">-101.89</td>
+<td align="right">-97.73</td>
+<td align="right">-91.73</td>
+<td align="right">-99.23</td>
+<td align="right">-69.27</td>
+<td align="right">-101.89</td>
+<td align="right">-110.40</td>
+<td align="right">-123.37</td>
+<td align="right">-146.11</td>
+<td align="right">-166.82</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-92.87</td>
+<td align="right">-100.52</td>
+<td align="right">-89.57</td>
+<td align="right">-106.11</td>
+</tr>
+<tr class="odd">
+<td align="left">NE-RA</td>
+<td align="right">-101.89</td>
+<td align="right">-98.03</td>
+<td align="right">-92.55</td>
+<td align="right">-90.83</td>
+<td align="right">-70.38</td>
+<td align="right">-101.90</td>
+<td align="right">-110.66</td>
+<td align="right">-97.06</td>
+<td align="right">-101.42</td>
+<td align="right">-99.40</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-95.97</td>
+<td align="right">-96.29</td>
+<td align="right">-86.72</td>
+<td align="right">-86.05</td>
+</tr>
+<tr class="even">
+<td align="left">NI</td>
+<td align="right">-101.89</td>
+<td align="right">-100.53</td>
+<td align="right">-97.85</td>
+<td align="right">-94.82</td>
+<td align="right">-76.96</td>
+<td align="right">-101.89</td>
+<td align="right">-100.53</td>
+<td align="right">-95.08</td>
+<td align="right">-101.81</td>
+<td align="right">-107.84</td>
+<td align="right">-101.89</td>
+<td align="right">-100.01</td>
+<td align="right">-96.08</td>
+<td align="right">-91.24</td>
+<td align="right">-75.17</td>
+<td align="right">-101.89</td>
+<td align="right">-101.85</td>
+<td align="right">-101.83</td>
+<td align="right">-101.69</td>
+<td align="right">-101.44</td>
+</tr>
+<tr class="odd">
+<td align="left">NI-RA</td>
+<td align="right">-101.89</td>
+<td align="right">-100.80</td>
+<td align="right">-99.02</td>
+<td align="right">-97.42</td>
+<td align="right">-88.86</td>
+<td align="right">-98.96</td>
+<td align="right">-102.75</td>
+<td align="right">-100.64</td>
+<td align="right">-101.79</td>
+<td align="right">-101.15</td>
+<td align="right">-101.89</td>
+<td align="right">-100.35</td>
+<td align="right">-97.72</td>
+<td align="right">-95.26</td>
+<td align="right">-87.92</td>
+<td align="right">-101.89</td>
+<td align="right">-101.82</td>
+<td align="right">-101.79</td>
+<td align="right">-101.61</td>
+<td align="right">-101.43</td>
+</tr>
+<tr class="even">
+<td align="left">QCH</td>
+<td align="right">-101.89</td>
+<td align="right">-100.80</td>
+<td align="right">-98.64</td>
+<td align="right">-96.11</td>
+<td align="right">-82.15</td>
+<td align="right">-101.89</td>
+<td align="right">-100.75</td>
+<td align="right">-95.85</td>
+<td align="right">-101.14</td>
+<td align="right">-106.19</td>
+<td align="right">-101.89</td>
+<td align="right">-100.39</td>
+<td align="right">-97.25</td>
+<td align="right">-93.33</td>
+<td align="right">-80.91</td>
+<td align="right">-101.89</td>
+<td align="right">-101.86</td>
+<td align="right">-101.85</td>
+<td align="right">-101.74</td>
+<td align="right">-101.58</td>
+</tr>
+<tr class="odd">
+<td align="left">QCH-RA</td>
+<td align="right">-101.89</td>
+<td align="right">-98.01</td>
+<td align="right">-92.92</td>
+<td align="right">-91.32</td>
+<td align="right">-72.85</td>
+<td align="right">-94.57</td>
+<td align="right">-109.52</td>
+<td align="right">-97.02</td>
+<td align="right">-101.40</td>
+<td align="right">-99.40</td>
+<td align="right">-101.89</td>
+<td align="right">-93.74</td>
+<td align="right">-82.24</td>
+<td align="right">-81.27</td>
+<td align="right">-70.25</td>
+<td align="right">-101.89</td>
+<td align="right">-96.58</td>
+<td align="right">-97.56</td>
+<td align="right">-93.41</td>
+<td align="right">-93.68</td>
+</tr>
+<tr class="even">
+<td align="left">QLK</td>
+<td align="right">-101.89</td>
+<td align="right">-99.02</td>
+<td align="right">-93.73</td>
+<td align="right">-90.67</td>
+<td align="right">-66.42</td>
+<td align="right">-101.89</td>
+<td align="right">-100.16</td>
+<td align="right">-99.10</td>
+<td align="right">-111.82</td>
+<td align="right">-121.28</td>
+<td align="right">-101.89</td>
+<td align="right">-97.75</td>
+<td align="right">-89.70</td>
+<td align="right">-83.40</td>
+<td align="right">-66.79</td>
+<td align="right">-101.89</td>
+<td align="right">-101.53</td>
+<td align="right">-101.32</td>
+<td align="right">-100.14</td>
+<td align="right">-99.14</td>
+</tr>
+<tr class="odd">
+<td align="left">QLK-RA</td>
+<td align="right">-101.89</td>
+<td align="right">-103.76</td>
+<td align="right">-93.73</td>
+<td align="right">-93.65</td>
+<td align="right">-72.68</td>
+<td align="right">-106.42</td>
+<td align="right">-147.95</td>
+<td align="right">-98.76</td>
+<td align="right">-102.55</td>
+<td align="right">-112.66</td>
+<td align="right">-101.89</td>
+<td align="right">-93.61</td>
+<td align="right">-82.47</td>
+<td align="right">-82.41</td>
+<td align="right">-73.46</td>
+<td align="right">-101.89</td>
+<td align="right">-92.88</td>
+<td align="right">-96.83</td>
+<td align="right">-85.68</td>
+<td align="right">-86.48</td>
+</tr>
+<tr class="even">
+<td align="left">QRE</td>
+<td align="right">-101.89</td>
+<td align="right">-99.50</td>
+<td align="right">-95.28</td>
+<td align="right">-92.19</td>
+<td align="right">-72.14</td>
+<td align="right">-101.89</td>
+<td align="right">-100.10</td>
+<td align="right">-95.11</td>
+<td align="right">-104.33</td>
+<td align="right">-113.18</td>
+<td align="right">-101.89</td>
+<td align="right">-97.96</td>
+<td align="right">-90.24</td>
+<td align="right">-83.63</td>
+<td align="right">-65.59</td>
+<td align="right">-101.89</td>
+<td align="right">-100.98</td>
+<td align="right">-100.52</td>
+<td align="right">-97.58</td>
+<td align="right">-94.63</td>
+</tr>
+<tr class="odd">
+<td align="left">QRE-RA</td>
+<td align="right">-101.89</td>
+<td align="right">-100.18</td>
+<td align="right">-97.52</td>
+<td align="right">-95.53</td>
+<td align="right">-84.32</td>
+<td align="right">-96.90</td>
+<td align="right">-103.56</td>
+<td align="right">-99.89</td>
+<td align="right">-101.72</td>
+<td align="right">-100.66</td>
+<td align="right">-101.89</td>
+<td align="right">-99.08</td>
+<td align="right">-94.42</td>
+<td align="right">-90.76</td>
+<td align="right">-79.92</td>
+<td align="right">-101.89</td>
+<td align="right">-100.45</td>
+<td align="right">-100.03</td>
+<td align="right">-96.87</td>
+<td align="right">-94.60</td>
+</tr>
+<tr class="even">
+<td align="left">RND</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+<td align="right">-101.89</td>
+</tr>
+</tbody>
+</table>
+<table style="width:100%;">
+<caption>Loglikelihoods: three action games</caption>
+<colgroup>
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">T21</th>
+<th align="right">T22</th>
+<th align="right">T23</th>
+<th align="right">T24</th>
+<th align="right">T25</th>
+<th align="right">T26</th>
+<th align="right">T27</th>
+<th align="right">T28</th>
+<th align="right">T29</th>
+<th align="right">T30</th>
+<th align="right">T31</th>
+<th align="right">T32</th>
+<th align="right">T33</th>
+<th align="right">T34</th>
+<th align="right">T35</th>
+<th align="right">T36</th>
+<th align="right">T37</th>
+<th align="right">T38</th>
+<th align="right">T39</th>
+<th align="right">T40</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">CH</td>
+<td align="right">-182.37</td>
+<td align="right">-179.56</td>
+<td align="right">-177.11</td>
+<td align="right">-166.42</td>
+<td align="right">-174.78</td>
+<td align="right">-183.77</td>
+<td align="right">-197.40</td>
+<td align="right">-198.12</td>
+<td align="right">-192.14</td>
+<td align="right">-186.98</td>
+<td align="right">-182.37</td>
+<td align="right">-156.82</td>
+<td align="right">-152.52</td>
+<td align="right">-153.38</td>
+<td align="right">-136.17</td>
+<td align="right">-182.37</td>
+<td align="right">-187.23</td>
+<td align="right">-187.63</td>
+<td align="right">-185.82</td>
+<td align="right">-185.22</td>
+</tr>
+<tr class="even">
+<td align="left">CH-RA</td>
+<td align="right">-204.33</td>
+<td align="right">-179.40</td>
+<td align="right">-177.11</td>
+<td align="right">-166.85</td>
+<td align="right">-172.51</td>
+<td align="right">-152.52</td>
+<td align="right">-169.29</td>
+<td align="right">-167.37</td>
+<td align="right">-168.42</td>
+<td align="right">-152.52</td>
+<td align="right">-182.37</td>
+<td align="right">-156.82</td>
+<td align="right">-152.52</td>
+<td align="right">-153.38</td>
+<td align="right">-136.17</td>
+<td align="right">-182.37</td>
+<td align="right">-187.23</td>
+<td align="right">-187.63</td>
+<td align="right">-185.82</td>
+<td align="right">-185.22</td>
+</tr>
+<tr class="odd">
+<td align="left">LK</td>
+<td align="right">-182.37</td>
+<td align="right">-244.57</td>
+<td align="right">-283.98</td>
+<td align="right">-264.06</td>
+<td align="right">-285.90</td>
+<td align="right">-173.16</td>
+<td align="right">-213.36</td>
+<td align="right">-207.06</td>
+<td align="right">-195.69</td>
+<td align="right">-173.16</td>
+<td align="right">-182.37</td>
+<td align="right">-236.09</td>
+<td align="right">-195.60</td>
+<td align="right">-212.36</td>
+<td align="right">-170.34</td>
+<td align="right">-182.37</td>
+<td align="right">-229.99</td>
+<td align="right">-228.78</td>
+<td align="right">-242.32</td>
+<td align="right">-254.24</td>
+</tr>
+<tr class="even">
+<td align="left">NE</td>
+<td align="right">-182.37</td>
+<td align="right">-188.15</td>
+<td align="right">-185.69</td>
+<td align="right">-176.20</td>
+<td align="right">-185.60</td>
+<td align="right">-181.44</td>
+<td align="right">-209.76</td>
+<td align="right">-235.91</td>
+<td align="right">-215.17</td>
+<td align="right">-186.47</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-174.00</td>
+<td align="right">-175.08</td>
+<td align="right">-196.50</td>
+<td align="right">-227.22</td>
+</tr>
+<tr class="odd">
+<td align="left">NE-RA</td>
+<td align="right">-183.26</td>
+<td align="right">-183.70</td>
+<td align="right">-179.93</td>
+<td align="right">-174.06</td>
+<td align="right">-176.19</td>
+<td align="right">-143.14</td>
+<td align="right">-168.71</td>
+<td align="right">-171.20</td>
+<td align="right">-167.27</td>
+<td align="right">-140.68</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-176.47</td>
+<td align="right">-174.45</td>
+<td align="right">-178.24</td>
+<td align="right">-186.37</td>
+</tr>
+<tr class="even">
+<td align="left">NI</td>
+<td align="right">-182.37</td>
+<td align="right">-181.73</td>
+<td align="right">-179.76</td>
+<td align="right">-175.20</td>
+<td align="right">-175.70</td>
+<td align="right">-182.96</td>
+<td align="right">-184.99</td>
+<td align="right">-188.34</td>
+<td align="right">-185.26</td>
+<td align="right">-183.64</td>
+<td align="right">-182.37</td>
+<td align="right">-179.88</td>
+<td align="right">-176.95</td>
+<td align="right">-172.20</td>
+<td align="right">-152.28</td>
+<td align="right">-182.37</td>
+<td align="right">-182.38</td>
+<td align="right">-182.40</td>
+<td align="right">-182.41</td>
+<td align="right">-182.44</td>
+</tr>
+<tr class="odd">
+<td align="left">NI-RA</td>
+<td align="right">-182.48</td>
+<td align="right">-182.20</td>
+<td align="right">-181.10</td>
+<td align="right">-179.24</td>
+<td align="right">-179.34</td>
+<td align="right">-177.08</td>
+<td align="right">-180.28</td>
+<td align="right">-180.86</td>
+<td align="right">-180.28</td>
+<td align="right">-176.61</td>
+<td align="right">-182.37</td>
+<td align="right">-180.35</td>
+<td align="right">-178.52</td>
+<td align="right">-176.27</td>
+<td align="right">-168.13</td>
+<td align="right">-182.37</td>
+<td align="right">-182.40</td>
+<td align="right">-182.42</td>
+<td align="right">-182.43</td>
+<td align="right">-182.45</td>
+</tr>
+<tr class="even">
+<td align="left">QCH</td>
+<td align="right">-182.37</td>
+<td align="right">-182.08</td>
+<td align="right">-181.20</td>
+<td align="right">-179.23</td>
+<td align="right">-179.21</td>
+<td align="right">-182.59</td>
+<td align="right">-183.29</td>
+<td align="right">-184.40</td>
+<td align="right">-183.30</td>
+<td align="right">-182.83</td>
+<td align="right">-182.37</td>
+<td align="right">-181.40</td>
+<td align="right">-180.22</td>
+<td align="right">-178.17</td>
+<td align="right">-169.25</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.38</td>
+<td align="right">-182.38</td>
+</tr>
+<tr class="odd">
+<td align="left">QCH-RA</td>
+<td align="right">-182.41</td>
+<td align="right">-182.29</td>
+<td align="right">-181.83</td>
+<td align="right">-181.08</td>
+<td align="right">-181.09</td>
+<td align="right">-180.25</td>
+<td align="right">-181.53</td>
+<td align="right">-181.77</td>
+<td align="right">-181.54</td>
+<td align="right">-180.07</td>
+<td align="right">-182.37</td>
+<td align="right">-181.59</td>
+<td align="right">-180.86</td>
+<td align="right">-179.93</td>
+<td align="right">-176.60</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.38</td>
+<td align="right">-182.38</td>
+<td align="right">-182.38</td>
+</tr>
+<tr class="even">
+<td align="left">QLK</td>
+<td align="right">-182.37</td>
+<td align="right">-195.47</td>
+<td align="right">-194.83</td>
+<td align="right">-171.94</td>
+<td align="right">-186.71</td>
+<td align="right">-227.55</td>
+<td align="right">-246.48</td>
+<td align="right">-252.28</td>
+<td align="right">-240.16</td>
+<td align="right">-259.68</td>
+<td align="right">-182.37</td>
+<td align="right">-156.11</td>
+<td align="right">-154.25</td>
+<td align="right">-157.96</td>
+<td align="right">-119.50</td>
+<td align="right">-182.37</td>
+<td align="right">-193.60</td>
+<td align="right">-197.52</td>
+<td align="right">-197.48</td>
+<td align="right">-203.35</td>
+</tr>
+<tr class="odd">
+<td align="left">QLK-RA</td>
+<td align="right">-196.37</td>
+<td align="right">-189.94</td>
+<td align="right">-184.78</td>
+<td align="right">-168.04</td>
+<td align="right">-176.90</td>
+<td align="right">-152.69</td>
+<td align="right">-182.03</td>
+<td align="right">-168.60</td>
+<td align="right">-181.41</td>
+<td align="right">-153.03</td>
+<td align="right">-182.37</td>
+<td align="right">-155.13</td>
+<td align="right">-151.29</td>
+<td align="right">-156.93</td>
+<td align="right">-119.49</td>
+<td align="right">-182.37</td>
+<td align="right">-195.69</td>
+<td align="right">-200.08</td>
+<td align="right">-199.45</td>
+<td align="right">-201.30</td>
+</tr>
+<tr class="even">
+<td align="left">QRE</td>
+<td align="right">-177.81</td>
+<td align="right">-193.79</td>
+<td align="right">-257.43</td>
+<td align="right">-368.06</td>
+<td align="right">-457.30</td>
+<td align="right">-149.34</td>
+<td align="right">-225.60</td>
+<td align="right">-273.00</td>
+<td align="right">-283.93</td>
+<td align="right">-202.21</td>
+<td align="right">-182.37</td>
+<td align="right">-182.30</td>
+<td align="right">-182.58</td>
+<td align="right">-182.51</td>
+<td align="right">-183.17</td>
+<td align="right">-182.37</td>
+<td align="right">-185.30</td>
+<td align="right">-189.30</td>
+<td align="right">-193.90</td>
+<td align="right">-216.65</td>
+</tr>
+<tr class="odd">
+<td align="left">QRE-RA</td>
+<td align="right">-178.11</td>
+<td align="right">-187.08</td>
+<td align="right">-210.73</td>
+<td align="right">-243.32</td>
+<td align="right">-261.23</td>
+<td align="right">-148.06</td>
+<td align="right">-176.48</td>
+<td align="right">-177.83</td>
+<td align="right">-183.69</td>
+<td align="right">-148.48</td>
+<td align="right">-182.37</td>
+<td align="right">-181.95</td>
+<td align="right">-182.12</td>
+<td align="right">-181.62</td>
+<td align="right">-180.89</td>
+<td align="right">-182.37</td>
+<td align="right">-184.48</td>
+<td align="right">-186.54</td>
+<td align="right">-187.21</td>
+<td align="right">-190.50</td>
+</tr>
+<tr class="even">
+<td align="left">RND</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+<td align="right">-182.37</td>
+</tr>
+</tbody>
+</table>
+<p>Creating a csv file with the log-likelihood difference to the baseline (CH-RA) for each of the four theories: NA-RA,CH-RA (normalized to 1), QLK-RA, QCH-RA</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>theories <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;NE-RA&quot;</span>, <span class="st">&quot;CH-RA&quot;</span>, <span class="st">&quot;QLK-RA&quot;</span>, <span class="st">&quot;QCH-RA&quot;</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>baseline <span class="ot">&lt;-</span> llh_table_all[<span class="st">&quot;CH-RA&quot;</span>, ]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (theory <span class="cf">in</span> theories) {</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  lh_diff <span class="ot">&lt;-</span> <span class="fu">round</span>(llh_table_all[theory,] <span class="sc">-</span> baseline, <span class="dv">12</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  treatment <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">40</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  output <span class="ot">&lt;-</span> <span class="fu">cbind</span>(treatment, lh_diff)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv</span>(output, <span class="at">file=</span> <span class="fu">paste0</span>(theory, <span class="st">&quot;.csv&quot;</span>), <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+</div>
+<div id="recreating-tables-from-the-online-appendix" class="section level2">
+<h2>Recreating tables from the Online Appendix</h2>
+<p>To recreate the tables from the Online Appendix use:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>vuong_table_2 <span class="ot">&lt;-</span> <span class="fu">vuong_matrix</span>(data_two_action_games, predictions_two_action_games)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>vuong_table_3 <span class="ot">&lt;-</span> <span class="fu">vuong_matrix</span>(data_three_action_games, predictions_three_action_games)</span></code></pre></div>
+<div id="log-likelihoods" class="section level3">
+<h3>Log-likelihoods</h3>
+<p>Creating tables from the log-likelihoods from above (requires xtable):</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xtable</span>(llh_table_2, <span class="at">type =</span> <span class="st">&quot;latex&quot;</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">xtable</span>(llh_table_3, <span class="at">type =</span> <span class="st">&quot;latex&quot;</span>)</span></code></pre></div>
+</div>
+<div id="testing-theories-individually" class="section level3">
+<h3>Testing theories individually</h3>
+<p>The following code gives us the results of the tests for each theory, if it generates predictions different from the observed data:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>chi_sq_hdg <span class="ot">&lt;-</span> oottest<span class="sc">:::</span><span class="fu">get_all_chi_sq</span>(data_two_action_games[,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>], predictions_two_action_games[,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,])</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>chi_sq_mp1 <span class="ot">&lt;-</span> oottest<span class="sc">:::</span><span class="fu">get_all_chi_sq</span>(data_two_action_games[,<span class="dv">11</span><span class="sc">:</span><span class="dv">15</span>], predictions_two_action_games[,<span class="dv">11</span><span class="sc">:</span><span class="dv">15</span>,])</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>chi_sq_mp2 <span class="ot">&lt;-</span> oottest<span class="sc">:::</span><span class="fu">get_all_chi_sq</span>(data_two_action_games[,<span class="dv">16</span><span class="sc">:</span><span class="dv">20</span>], predictions_two_action_games[,<span class="dv">16</span><span class="sc">:</span><span class="dv">20</span>,])</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>chi_sq_2 <span class="ot">&lt;-</span> oottest<span class="sc">:::</span><span class="fu">get_all_chi_sq</span>(data_two_action_games, predictions_two_action_games)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>chi_sq_ac <span class="ot">&lt;-</span> oottest<span class="sc">:::</span><span class="fu">get_all_chi_sq</span>(data_three_action_games[,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>], predictions_three_action_games[,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,])</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>chi_sq_rsp1 <span class="ot">&lt;-</span> oottest<span class="sc">:::</span><span class="fu">get_all_chi_sq</span>(data_three_action_games[,<span class="dv">11</span><span class="sc">:</span><span class="dv">15</span>], predictions_three_action_games[,<span class="dv">11</span><span class="sc">:</span><span class="dv">15</span>,])</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>chi_sq_rsp2 <span class="ot">&lt;-</span> oottest<span class="sc">:::</span><span class="fu">get_all_chi_sq</span>(data_three_action_games[,<span class="dv">16</span><span class="sc">:</span><span class="dv">20</span>], predictions_three_action_games[,<span class="dv">16</span><span class="sc">:</span><span class="dv">20</span>,])</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>chi_sq_3 <span class="ot">&lt;-</span> oottest<span class="sc">:::</span><span class="fu">get_all_chi_sq</span>(data_three_action_games, predictions_three_action_games)</span></code></pre></div>
+<p>Here the results for the hawk-dove games:</p>
+<table>
+<caption>Chi-squared test for the hawk-dove games</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">chi-sq</th>
+<th align="right">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">CH</td>
+<td align="right">90.65</td>
+<td align="right">0e+00</td>
+</tr>
+<tr class="even">
+<td align="left">CH-RA</td>
+<td align="right">52.48</td>
+<td align="right">1e-07</td>
+</tr>
+<tr class="odd">
+<td align="left">LK</td>
+<td align="right">134.97</td>
+<td align="right">0e+00</td>
+</tr>
+<tr class="even">
+<td align="left">NE</td>
+<td align="right">482.47</td>
+<td align="right">0e+00</td>
+</tr>
+<tr class="odd">
+<td align="left">NE-RA</td>
+<td align="right">61.20</td>
+<td align="right">0e+00</td>
+</tr>
+<tr class="even">
+<td align="left">NI</td>
+<td align="right">86.14</td>
+<td align="right">0e+00</td>
+</tr>
+<tr class="odd">
+<td align="left">NI-RA</td>
+<td align="right">111.10</td>
+<td align="right">0e+00</td>
+</tr>
+<tr class="even">
+<td align="left">QCH</td>
+<td align="right">97.02</td>
+<td align="right">0e+00</td>
+</tr>
+<tr class="odd">
+<td align="left">QCH-RA</td>
+<td align="right">47.70</td>
+<td align="right">7e-07</td>
+</tr>
+<tr class="even">
+<td align="left">QLK</td>
+<td align="right">109.56</td>
+<td align="right">0e+00</td>
+</tr>
+<tr class="odd">
+<td align="left">QLK-RA</td>
+<td align="right">237.13</td>
+<td align="right">0e+00</td>
+</tr>
+<tr class="even">
+<td align="left">QRE</td>
+<td align="right">81.78</td>
+<td align="right">0e+00</td>
+</tr>
+<tr class="odd">
+<td align="left">QRE-RA</td>
+<td align="right">90.01</td>
+<td align="right">0e+00</td>
+</tr>
+<tr class="even">
+<td align="left">RND</td>
+<td align="right">161.05</td>
+<td align="right">0e+00</td>
+</tr>
+</tbody>
+</table>
+<p>Now, to create the latex tables as seen in the paper. These can be just copied into the tex document.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>table_2 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(chi_sq_hdg, chi_sq_mp1, chi_sq_mp2, chi_sq_2)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>table_3 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(chi_sq_ac, chi_sq_rsp1, chi_sq_rsp2, chi_sq_3)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">xtable</span>(table_2, <span class="at">type =</span> <span class="st">&quot;latex&quot;</span>, <span class="at">digits=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">8</span>))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">xtable</span>(table_3, <span class="at">type =</span> <span class="st">&quot;latex&quot;</span>, <span class="at">digits=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">8</span>))</span></code></pre></div>
+</div>
+</div>
+<div id="data-and-theory-predictions" class="section level2">
+<h2>Data and theory predictions</h2>
+<div id="predictions" class="section level3">
+<h3>Predictions</h3>
+<p>Creating tex code of a table of all predictions:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pred_2 <span class="ot">&lt;-</span> <span class="fu">round</span>(predictions_two_action_games, <span class="dv">3</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>th_names <span class="ot">&lt;-</span> <span class="fu">names</span>(predictions_two_action_games[<span class="dv">1</span>,<span class="dv">1</span>,])</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (theory <span class="cf">in</span> th_names) {</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  output <span class="ot">&lt;-</span> <span class="fu">rbind</span>(output, <span class="fu">paste0</span>(<span class="st">&quot;(&quot;</span>, pred_2[<span class="dv">1</span>,,theory], <span class="st">&quot;, &quot;</span>, pred_2[<span class="dv">2</span>,,theory], <span class="st">&quot;)&quot;</span>))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(output) <span class="ot">&lt;-</span> <span class="fu">names</span>(predictions_two_action_games[<span class="dv">1</span>,,<span class="dv">1</span>])</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(output) <span class="ot">&lt;-</span> th_names</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">xtable</span>(output, <span class="at">type =</span> <span class="st">&quot;latex&quot;</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>pred_3 <span class="ot">&lt;-</span> <span class="fu">round</span>(predictions_three_action_games, <span class="dv">3</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (theory <span class="cf">in</span> th_names) {</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  output <span class="ot">&lt;-</span> <span class="fu">rbind</span>(output, <span class="fu">paste0</span>(<span class="st">&quot;(&quot;</span>, pred_3[<span class="dv">1</span>,,theory], <span class="st">&quot;, &quot;</span>, pred_3[<span class="dv">2</span>,,theory], <span class="st">&quot;, &quot;</span>, pred_3[<span class="dv">3</span>,,theory],  <span class="st">&quot;)&quot;</span>))</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(output) <span class="ot">&lt;-</span> <span class="fu">names</span>(predictions_two_action_games[<span class="dv">1</span>,,<span class="dv">1</span>])</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(output) <span class="ot">&lt;-</span> th_names</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="fu">xtable</span>(output, <span class="at">type =</span> <span class="st">&quot;latex&quot;</span>)</span></code></pre></div>
+</div>
+<div id="data" class="section level3">
+<h3>Data</h3>
+<p>Creating tex code to display the summary of the choice data of the experiments:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xtable</span>(data_two_action_games, <span class="at">type =</span> <span class="st">&quot;latex&quot;</span>, <span class="at">digits=</span><span class="dv">0</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">xtable</span>(data_three_action_games, <span class="at">type =</span> <span class="st">&quot;latex&quot;</span>, <span class="at">digits=</span><span class="dv">0</span>)</span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1 class="unnumbered">References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-dahl2009xtable" class="csl-entry">
+Dahl, David B, David Scott, Charles Roosen, Arni Magnusson, and Jonathan Swinton. 2009. <em>Xtable: Export Tables to LaTeX or HTML</em>.
+</div>
+<div id="ref-kulpmann2020comparing" class="csl-entry">
+Külpmann, Philipp, and Christoph Kuzmics. 2020. <span>“Comparing Theories of One-Shot Play Out of Treatment.”</span> <a href="https://dx.doi.org/10.2139/ssrn.3441675">https://dx.doi.org/10.2139/ssrn.3441675</a>.
+</div>
+<div id="ref-tantau2013a" class="csl-entry">
+Tantau, Till. 2013. <em>The TikZ and PGF Packages: Manual for Version 3.1.0</em>. <a href="https://sourceforge.net/projects/pgf/">https://sourceforge.net/projects/pgf/</a>.
+</div>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
